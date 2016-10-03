@@ -1,7 +1,6 @@
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 import java.io.IOException;
-import java.lang.Math;
 
 /*處理關於寶可夢能力值方面函數的類別，
 其中讀取輸入值部分參考自Example所附之ConsoleIn.java，並挑選有使用到的函式並改寫成寶可夢能力值輸入專用之形式。*/
@@ -56,6 +55,39 @@ public class PokemonStats
             }
         }
         return stats;
+    }
+
+    //讀取寶可夢等級專用函式，限制使用者只能輸入1~40之間的整數。
+    public static int readPokeLevel()
+    {
+        String input = null;
+        int level = 0;
+        Boolean pass = false;
+        System.out.print("為計算CP值，請輸入寶可夢等級：");
+        while(!pass)
+        {
+            try
+            {
+                input = readLine();
+                level = Integer.parseInt(input);
+                //判斷是否落在0~15區間內，若否則扔出NumberFormat例外。
+                if(level < 0 || level > 40)
+                {
+                    throw new NumberFormatException();
+                }
+                else
+                {
+                    pass = true;
+                }
+            }
+            catch(NumberFormatException err)
+            {
+                System.out.println("輸入型態錯誤！");
+                System.out.println("輸入值必須為1~40之間的整數，");
+                System.out.print("請重新輸入等級：");
+            }
+        }
+        return level;
     }
 
     //讀取計算系統選項用函式，限制只能輸入0~3之間的byte。
@@ -118,5 +150,14 @@ public class PokemonStats
             appraise = "極差";
         }
         System.out.println("本隻寶可夢的評價為：【"+appraise+"】");
+    }
+
+    /*計算寶可夢的CP值，使用CP值公式：(ATK+100)*(DEF+100)*(STA+100)*(等級換算值)^2/1000，
+    其中等級換算值=0.0175*等級+0.09
+    */
+    public static int calcCP(int atk, int def, int sta, int level)
+    {
+        double levelConv = 0.0175*level+0.09;
+        return (int)Math.floor(((atk+100)*(def+100)*(sta+100)*(levelConv*levelConv))/1000.0);
     }
 }

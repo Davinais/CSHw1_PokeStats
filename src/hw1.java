@@ -37,6 +37,10 @@ public class hw1
                     PokemonStats.appraiseIV(iv);
                     break;
                 case 2:
+                    int level = PokemonStats.readPokeLevel();
+                    int cp = PokemonStats.calcCP(atk, def, sta, level);
+                    System.out.println("CP值為：" + cp);
+                    break;
                 case 3:
                 default:
                     System.out.println("發生錯誤，結束程式…");
