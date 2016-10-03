@@ -1,5 +1,3 @@
-import java.lang.Math;
-
 public class hw1
 {
     public static void menuDisplay()
@@ -34,6 +32,10 @@ public class hw1
                     System.exit(0);
                     break;
                 case 1:
+                    int iv = PokemonStats.calcIV(atk, def, sta);
+                    System.out.println("IV值為：" + iv + "%");
+                    PokemonStats.appraiseIV(iv);
+                    break;
                 case 2:
                 case 3:
                 default:
