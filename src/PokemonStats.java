@@ -70,8 +70,8 @@ public class PokemonStats
             {
                 input = readLine();
                 level = Integer.parseInt(input);
-                //判斷是否落在0~15區間內，若否則扔出NumberFormat例外。
-                if(level < 0 || level > 40)
+                //判斷是否落在1~40區間內，若否則扔出NumberFormat例外。
+                if(level < 1 || level > 40)
                 {
                     throw new NumberFormatException();
                 }
