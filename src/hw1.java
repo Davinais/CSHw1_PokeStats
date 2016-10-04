@@ -1,5 +1,14 @@
 public class hw1
 {
+    //請求使用者輸入寶可夢的數值，需要一能力值變數以及其名稱作為參數
+    public static int statsInput(int stats, String name)
+    {
+        System.out.print("請輸入寶可夢" + name + "數值：");
+        stats = PokemonStats.readPokeStats();
+        return stats;
+    }
+    
+    //顯示選單
     public static void menuDisplay()
     {
         System.out.println("════════════════════════════");
@@ -8,18 +17,19 @@ public class hw1
         System.out.println("[1] 計算IV值");
         System.out.println("[2] 計算特定等級之CP值");
         System.out.println("[3] 計算目標CP值之最低等級");
+        System.out.println("[4] 重新輸入寶可夢數值");
         System.out.print(">>> ");
     }
+    
     public static void main(String[] args)
     {
         System.out.println("歡迎使用寶可夢能力值計算系統");
         System.out.println("════════════════════════════\n");
-        System.out.print("請輸入寶可夢個體攻擊(ATK)數值：");
-        int atk = PokemonStats.readPokeStats();
-        System.out.print("請輸入寶可夢個體防禦(DEF)數值：");
-        int def = PokemonStats.readPokeStats();
-        System.out.print("請輸入寶可夢個體體力(STA)數值：");
-        int sta = PokemonStats.readPokeStats();
+        int atk = 0, def = 0, sta = 0; //給定一初始值0，讓編譯器開心
+        String statsName[] = {"個體攻擊(ATK)", "個體防禦(DEF)", "個體體力(STA)"};
+        atk = statsInput(atk, statsName[0]);
+        def = statsInput(def, statsName[1]);
+        sta = statsInput(sta, statsName[2]);
         Boolean end = false;
         while(!end)
         {
@@ -52,6 +62,12 @@ public class hw1
                     {
                         System.out.println("欲達到此CP值的最低等級為：【" + reachLevel + "】等");
                     }
+                    break;
+                case 4:
+                    System.out.println("════════════════════════════");
+                    atk = statsInput(atk, statsName[0]);
+                    def = statsInput(def, statsName[1]);
+                    sta = statsInput(sta, statsName[2]);
                     break;
                 default:
                     System.out.println("發生錯誤，結束程式…");

@@ -90,7 +90,7 @@ public class PokemonStats
         return level;
     }
 
-    //讀取計算系統選項用函式，限制只能輸入0~3之間的byte。
+    //讀取計算系統選項用函式，限制只能輸入0~4之間的byte。
     public static byte readChoice()
     {
         String input = null;
@@ -102,8 +102,8 @@ public class PokemonStats
             {
                 input = readLine();
                 choice = Byte.parseByte(input);
-                //判斷是否落在0~3區間內，若否則扔出NumberFormat例外。
-                if(choice < 0 || choice > 3)
+                //判斷是否落在0~4區間內，若否則扔出NumberFormat例外。
+                if(choice < 0 || choice > 4)
                 {
                     throw new NumberFormatException();
                 }
@@ -115,7 +115,7 @@ public class PokemonStats
             catch(NumberFormatException err)
             {
                 System.out.println("輸入型態錯誤！");
-                System.out.println("輸入值必須為0~3之間的選項，");
+                System.out.println("輸入值必須為0~4之間的選項，");
                 System.out.println("請重新輸入想要進行的動作，");
                 System.out.print(">>> ");
             }
