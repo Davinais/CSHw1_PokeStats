@@ -60,7 +60,7 @@ public class hw1
                     }
                     else
                     {
-                        System.out.println("欲達到此CP值的最低等級為：【" + reachLevel + "】等");
+                        System.out.println("欲達到此CP值的最低等級為：【" + reachLevel + "等】");
                     }
                     break;
                 case 4:
