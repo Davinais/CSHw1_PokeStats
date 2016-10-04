@@ -42,6 +42,17 @@ public class hw1
                     System.out.println("CP值為：" + cp);
                     break;
                 case 3:
+                    int targetCP = PokemonStats.readCP();
+                    int reachLevel = PokemonStats.calcTargetCPLevel(atk, def, sta, targetCP);
+                    if(reachLevel == -1)
+                    {
+                        System.out.println("超過等級上限，無法達到此CP值！");
+                    }
+                    else
+                    {
+                        System.out.println("欲達到此CP值的最低等級為：【" + reachLevel + "】等");
+                    }
+                    break;
                 default:
                     System.out.println("發生錯誤，結束程式…");
                     System.exit(0);

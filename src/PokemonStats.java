@@ -122,6 +122,40 @@ public class PokemonStats
         }
         return choice;
     }
+	
+	//讀取CP值用，限制輸入大於合理CP值之整數
+	public static int readCP()
+	{
+        String input = null;
+        int cp = 0;
+        final int CPMIN = (int)Math.floor(((100)*(100)*(100)*(0.09*0.09))/1000.0);
+        Boolean pass = false;
+        System.out.print("請輸入目標CP值：");
+        while(!pass)
+        {
+            try
+            {
+                input = readLine();
+                cp = Integer.parseInt(input);
+                //判斷是否合理，若否則扔出NumberFormat例外。
+                if(cp < CPMIN)
+                {
+                    throw new NumberFormatException();
+                }
+                else
+                {
+                    pass = true;
+                }
+            }
+            catch(NumberFormatException err)
+            {
+                System.out.println("輸入型態錯誤！");
+                System.out.println("輸入值必須為整數且大於最低CP值：" + CPMIN + "，");
+                System.out.print("請重新輸入CP值：");
+            }
+        }
+        return cp;
+    }
 
     //讀入ATK, DEF, STA 參數，並使用IV值公式：(ATK+DEF+STA)/45*100%，以計算IV值。
     public static int calcIV(int atk, int def, int sta)
@@ -159,5 +193,26 @@ public class PokemonStats
     {
         double levelConv = 0.0175*level+0.09;
         return (int)Math.floor(((atk+100)*(def+100)*(sta+100)*(levelConv*levelConv))/1000.0);
+    }
+    
+    /*計算欲達到目標CP值之最低等級，根據CP值公式：(ATK+100)*(DEF+100)*(STA+100)*(等級換算值)^2/1000，
+    其中等級換算值=0.0175*等級+0.09，將其倒過來計算，再無條件進位，即可得到最低等級
+    當最低等級>40時，會回傳-1，表示超過上限；若<1時，則會回傳1*/
+    public static int calcTargetCPLevel(int atk, int def, int sta, int cp)
+    {
+        double levelConvRough = Math.sqrt(cp*1000.0/((atk+100)*(def+100)*(sta+100)));
+        int level = (int)Math.ceil((levelConvRough - 0.09)/0.0175);
+        if(level > 40)
+        {
+            return -1;
+        }
+        else if(level < 1)
+        {
+            return 1;
+        }
+        else
+        {
+            return level;
+        }
     }
 }
