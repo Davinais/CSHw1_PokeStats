@@ -128,7 +128,7 @@ public class PokemonStats
 	{
         String input = null;
         int cp = 0;
-        final int CPMIN = (int)Math.floor(((100)*(100)*(100)*(0.09*0.09))/1000.0);
+        final int CPMIN = (int)Math.floor(((100)*(100)*(100)*((0.09+0.0175*1)*(0.09+0.0175*1))/1000.0));
         Boolean pass = false;
         System.out.print("請輸入目標CP值：");
         while(!pass)
