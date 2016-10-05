@@ -1,10 +1,10 @@
 public class hw1
 {
-    //請求使用者輸入寶可夢的數值，需要一能力值變數以及其名稱作為參數
-    public static int statsInput(int stats, String name)
+    //請求使用者輸入寶可夢的數值，需要一能力值名稱作為參數
+    public static int statsInput(String name)
     {
         System.out.print("請輸入寶可夢" + name + "數值：");
-        stats = PokemonStats.readPokeStats();
+        int stats = PokemonStats.readPokeStats();
         return stats;
     }
     
@@ -25,11 +25,10 @@ public class hw1
     {
         System.out.println("歡迎使用寶可夢能力值計算系統");
         System.out.println("════════════════════════════\n");
-        int atk = 0, def = 0, sta = 0; //給定一初始值0，讓編譯器開心
         String statsName[] = {"個體攻擊(ATK)", "個體防禦(DEF)", "個體體力(STA)"};
-        atk = statsInput(atk, statsName[0]);
-        def = statsInput(def, statsName[1]);
-        sta = statsInput(sta, statsName[2]);
+        int atk = statsInput(statsName[0]);
+        int def = statsInput(statsName[1]);
+        int sta = statsInput(statsName[2]);
         Boolean end = false;
         while(!end)
         {
@@ -65,9 +64,9 @@ public class hw1
                     break;
                 case 4:
                     System.out.println("════════════════════════════");
-                    atk = statsInput(atk, statsName[0]);
-                    def = statsInput(def, statsName[1]);
-                    sta = statsInput(sta, statsName[2]);
+                    atk = statsInput(statsName[0]);
+                    def = statsInput(statsName[1]);
+                    sta = statsInput(statsName[2]);
                     break;
                 default:
                     System.out.println("發生錯誤，結束程式…");
